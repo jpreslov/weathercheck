@@ -3,11 +3,11 @@ import Button from "react-bootstrap/Button";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import CityCard from "./CityCard";
 
-const Jumbo = () => {
+const Jumbo: React.FC<iCities> = () => {
   //make fetches and pass props from this file
   // let apiKey = "73f9f91185180b6bf652ddc384e75345";
   let apiKey = "daa58b1e923383b635bc599a9bb91bec";
-  let [city, setCity] = useState<object>([]);
+  let [cities, setCity] = useState;
   let [checked, setChecked] = useState<boolean>();
 
   useEffect(() => {
@@ -16,26 +16,22 @@ const Jumbo = () => {
         let lon = position.coords.longitude;
         let lat = position.coords.latitude;
 
-        async function fetchCity() {
-          const res = await fetch(
-            `https://api.openweathermap.org/data/2.5/find?lon=${lon}&lat=${lat}&units=imperial&appid=${apiKey}`
-          );
-          res
-            .json()
-            .then((res) => setCity(res))
-            .catch((err) => console.error(err));
-        }
+        fetch(
+          `https://api.openweathermap.org/data/2.5/find?lon=${lon}&lat=${lat}&units=imperial&appid=${apiKey}`
+        )
+          .then((res) => res.json())
+          .then((cities) => {
+            setCity(cities);
+          })
+          .catch((err) => console.error(err));
+        });
+      } 
+    }, []);
+    
+    console.log(cities);
+    
+  if (cities) {
 
-        fetchCity();
-      });
-    } else {
-      alert("Location not enabled");
-    }
-  }, []);
-
-  console.log(city);
-
-  if (city) {
     return (
       <React.Fragment>
         <Jumbotron>
@@ -58,5 +54,7 @@ const Jumbo = () => {
     );
   }
 };
+
+export interface iCities null
 
 export default Jumbo;
