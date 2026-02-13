@@ -17,7 +17,7 @@
     "react-bootstrap": "^1.0.0",
     "react-bootstrap-typeahead": "^5.0.0-alpha.1",
     "react-dom": "^16.13.0",
-    "react-scripts": "3.4.0",
+    "react-scripts": "5.0.1",
     "typescript": "^3.8.3",
     "use-async-effect": "^2.2.2"
   },
